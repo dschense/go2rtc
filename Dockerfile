@@ -57,6 +57,9 @@ RUN if [ "${TARGETARCH}" = "amd64" ]; then apk add --no-cache libva-intel-driver
 COPY --from=build /build/go2rtc /usr/local/bin/
 COPY --from=ngrok /bin/ngrok /usr/local/bin/
 
+# Copy ace.js files for offline usage
+COPY ./www/js /usr/local/go2rtc/www/js
+
 ENTRYPOINT ["/sbin/tini", "--"]
 VOLUME /config
 WORKDIR /config
